@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.telephony.SmsManager;
 
 
 public class MainActivity extends Activity {
@@ -12,6 +13,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage("16318962070", null, "Varun is awesome", null, null);
     }
 
 
