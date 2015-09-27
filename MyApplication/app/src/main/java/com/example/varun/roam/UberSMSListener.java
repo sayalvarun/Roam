@@ -39,17 +39,18 @@ public class UberSMSListener extends BroadcastReceiver {
                 String outputString = new String(res, 0, resultLength, "UTF-8");
 
                 String command = outputString.split("~")[0];
-                Log.d("WEATHER",command);
+                Log.d("UBER",command);
                 if(command.equals("uber")) {
                     Intent newIntent = new Intent(context, DisplayUber.class)
                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                    String[] weatherData = outputString.split("~");
+                    String[] uberData = outputString.split("~");
                     ArrayList<String> products = new ArrayList<String>();
                     for(int i=1; i<products.size(); i++){
-                        products.add(weatherData[i]);
+                        products.add(uberData[i]);
                     }
-                    newIntent.putExtra("productStrings", products);
+
+                    newIntent.putExtra("productStrings", outputString);
                     context.startActivity(newIntent);
                 }
             }catch(Exception r){

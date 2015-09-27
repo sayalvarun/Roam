@@ -97,15 +97,17 @@ def getWeather(latitude, longitude):
     rescode = 0;
     try:
         currtime = int(time.time())
-        print currtime
-        nextday = currtime + (24*60*60)
-        print nextday
+        nextday = currtime + (24*60*60) # add the number of seconds for 24 hours later than currtime
         #print api_url + api_key + latitude + "," + longitude + "," + str(currtime)
-        pgjson = requests.get(api_url + api_key + latitude + "," + longitude + "," + str(currtime)).json()
-        result += pgjson['hourly']['summary']
-        pgjson = requests.get(api_url + api_key + latitude + "," + longitude + "," + str(nextday)).json()
+        d1json = requests.get(api_url + api_key + latitude + "," + longitude + "," + str(currtime)).json()
+        d2json = requests.get(api_url + api_key + latitude + "," + longitude + "," + str(nextday)).json()
+        result += d1json['hourly']['summary']
         result += ";"
-        result += pgjson['hourly']['summary']
+        result += d2json['hourly']['summary']
+        result += "~"
+        result += d1json['hourly']['icon']
+        result += ";"
+        result += d2json['hourly']['icon']
     except Exception, e:
         result += "Error in retreiving data"
         rescode = 1;
