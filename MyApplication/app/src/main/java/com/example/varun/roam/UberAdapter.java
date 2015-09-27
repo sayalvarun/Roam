@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  * Created by varun on 9/27/15.
- */
+*/
 public class UberAdapter extends ArrayAdapter<Product> {
     private ArrayList<Product> objects;
 
@@ -72,6 +72,5 @@ public class UberAdapter extends ArrayAdapter<Product> {
 
         // the view must be returned to our activity
         return v;
-
     }
 }
