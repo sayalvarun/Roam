@@ -1,19 +1,24 @@
 package com.example.varun.roam;
 
+import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.content.Intent;
 
-
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     Button gMapsButton = null;
 
@@ -22,6 +27,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gMapsButton = (Button) findViewById(R.id.g_maps_button);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.setLogo(R.drawable.icon_36);
         setGMapsListener();
     }
 
@@ -37,7 +46,9 @@ public class MainActivity extends Activity {
         );
     }
 
-
+    public void getDirections(View view) {
+        Intent intent = new Intent(this, InputGoogleMaps.class);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,4 +71,5 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

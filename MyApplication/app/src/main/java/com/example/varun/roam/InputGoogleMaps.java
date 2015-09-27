@@ -1,15 +1,19 @@
 package com.example.varun.roam;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.SmsManager;
+import android.transition.Fade;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class InputGoogleMaps extends Activity {
@@ -22,8 +26,14 @@ public class InputGoogleMaps extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_google_maps);
+        Intent intent = getIntent();
         IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
-        registerReceiver(new SmsListener(),filter);
+        registerReceiver(new SmsListener(), filter);
+
+       // Typeface myTypeface = Typeface.createFromAsset(getAssets(), "xiomara.ttf");
+       // TextView myTextView = (TextView)findViewById(R.id.directionsText);
+       // myTextView.setTypeface(myTypeface);
+
         source = (EditText) findViewById(R.id.sourceTextField);
         dest = (EditText) findViewById(R.id.destinationTextField);
         button = (Button) findViewById(R.id.getDirectionsButton);
