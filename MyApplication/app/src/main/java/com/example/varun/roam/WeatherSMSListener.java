@@ -47,6 +47,9 @@ public class WeatherSMSListener extends BroadcastReceiver {
                     String[] weatherData = outputString.split("~")[1].split(";");
                     newIntent.putExtra("todaysWeather", weatherData[0]);
                     newIntent.putExtra("tomorrowsWeather", weatherData[1]);
+                    String[] weatherIcons = outputString.split("~")[2].split(";");
+                    newIntent.putExtra("todaysWeatherIcon", weatherIcons[0]);
+                    newIntent.putExtra("tomorrowsWeatherIcon", weatherIcons[1]);
                     context.startActivity(newIntent);
                 }
             }catch(Exception r){
