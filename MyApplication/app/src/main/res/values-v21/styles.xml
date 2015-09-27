@@ -9,6 +9,7 @@
         <item name="android:windowEnterTransition">@android:transition/slide_bottom</item>
         <item name="android:windowExitTransition">@android:transition/explode</item>
 
+
         <!-- Main theme colors -->
         <!--   your app branding color for the app bar -->
         <item name="android:colorPrimary" type="color">#5F8454</item>
@@ -16,5 +17,11 @@
         <item name="android:colorPrimaryDark" type="color">#375E2C</item>
         <!--   theme UI controls like checkboxes and text fields -->
         <item name="android:colorAccent" type="color">#783841</item>
+
+        <!-- specify shared element transitions -->
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_image_transform</item>
     </style>
 </resources>
