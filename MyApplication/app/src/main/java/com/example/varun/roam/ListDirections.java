@@ -1,9 +1,14 @@
 package com.example.varun.roam;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.ArrayList;
+
 
 public class ListDirections extends AppCompatActivity {
 
@@ -11,6 +16,17 @@ public class ListDirections extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_directions);
+        String totalDuration = getIntent().getExtras().getString("totalDuration");
+        String totalDistance = getIntent().getExtras().getString("totalDistance");
+        ArrayList<String> elems = getIntent().getExtras().getStringArrayList("directions");
+        Direction[] directions = new Direction[elems.size()-1];
+        for(int i=0; i<directions.length; i++){
+            String[] subElems = elems.get(i).split(";");
+            directions[i] = new Direction(subElems[0],subElems[1],subElems[2]);
+            Log.d("ELEM:",directions[i].toString());
+        }
+
+        // /Log.d("Dur: ", totalDuration);
     }
 
     @Override
