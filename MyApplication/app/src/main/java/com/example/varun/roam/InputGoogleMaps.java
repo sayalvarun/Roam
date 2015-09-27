@@ -43,7 +43,7 @@ public class InputGoogleMaps extends Activity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String content = "";
+                        String content = "directions~";
                         content+= source.getText().toString().replace(" ","")+";";
                         content+= dest.getText().toString();
                         //Log.d("DEBUG:",content);

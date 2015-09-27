@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 
@@ -22,6 +23,7 @@ import java.util.zip.Inflater;
  */
 public class SmsListener extends BroadcastReceiver{
     private SharedPreferences preferences;
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -41,11 +43,26 @@ public class SmsListener extends BroadcastReceiver{
                 int resultLength = decompressor.inflate(res);
                 decompressor.end();
                 String outputString = new String(res, 0, resultLength, "UTF-8");
-                Log.d("DATA*****8",outputString);
+                Log.d("DATA*****",outputString);
+                String[] elems = outputString.split("~");
+                String totalDistance = elems[0].split(";")[0];
+                String totalTime = elems[0].split(";")[1];
+
+                Intent newIntent = new Intent(context,ListDirections.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                newIntent.putExtra("totalDistance",totalDistance);
+                newIntent.putExtra("totalDuration",totalTime);
+                ArrayList<String> list = new ArrayList<String>();
+                for(int i=1; i<elems.length; i++){
+                    list.add(elems[i]);
+                }
+                newIntent.putExtra("directions",list);
+                context.startActivity(newIntent);
             }catch(Exception r){
                 r.printStackTrace();
             }
-            Log.d("DEBG:","This is after decompression");
+            Log.d("DEBUG:","This is after decompression");
         }
     }
+
 }
