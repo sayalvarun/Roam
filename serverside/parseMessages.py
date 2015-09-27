@@ -71,12 +71,12 @@ def recieveMessage():
     command = None
     args = None
     if msg is not None:
-    	arr = msg.split("~")
+        arr = msg.split("~")
         command = arr[0]
         args = arr[1]
-    
+
         if command == "directions":
-       	    params = args.split(";")
+            params = args.split(";")
             err, output = getDirections(str(params[0]), str(params[1]))
             if err == 0:
                 compressed = zlib.compress(output)
@@ -84,8 +84,7 @@ def recieveMessage():
                 output = encodeComp
         else:
             output = "Error: Invalid Command!"
-
-	else:
+    else:
    	    output = "Error: Empty Message!" 
 
     resp = twilio.twiml.Response()
