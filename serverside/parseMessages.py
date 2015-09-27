@@ -7,14 +7,16 @@ app = Flask(__name__)
 def recieveMessage():
     """Respond to incoming calls with a simple text message."""
     msg = request.values.get('Body', None)
+    fromNumber = request.values.get('From',None);
     if msg is not None:
     	print(msg)
+        print(fromNumber)
     else:
    	msg = "Invalid" 
 
-    resp = twilio.twiml.Response()
-    resp.message("Hello, Mobile Monkey")
-    return str(resp)
+    #resp = twilio.twiml.Response()
+    #resp.message("Hello, Mobile Monkey")
+    #return str(resp)
  
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
