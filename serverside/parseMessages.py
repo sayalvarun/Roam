@@ -72,12 +72,12 @@ def recieveMessage():
         command = arr[0]
         args = arr[1]
     
-    if command == "direction":
-        params = args.split(";")
-        output = getDirections(str(params[0]), str(params[1]))
-        compressed = zlib.compress(output)
-        encodeComp = base64.b64encode(compressed)
-        output = encodeComp
+        if command == "directions":
+       	    params = args.split(";")
+            output = getDirections(str(params[0]), str(params[1]))
+            compressed = zlib.compress(output)
+            encodeComp = base64.b64encode(compressed)
+            output = encodeComp
 
 	else:
    	    output = "Error: Invalid Command!" 
@@ -87,4 +87,5 @@ def recieveMessage():
     return str(resp)
  
 if __name__ == "__main__":
+    app.debug = True
     app.run(host='0.0.0.0')
