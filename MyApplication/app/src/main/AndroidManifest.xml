@@ -34,6 +34,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.varun.roam.MainActivity" />
         </activity>
+        <activity
+            android:name=".ListDirections"
+            android:label="@string/title_activity_list_directions" >
+        </activity>
     </application>
 
 </manifest>

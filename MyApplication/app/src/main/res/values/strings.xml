@@ -9,5 +9,8 @@
     <string name="get_directions">Get Directions</string>
     <string name="title_activity_input_google_maps">Get Some Directions!</string>
     <string name="google_maps_activity_button">Google Maps</string>
+    <string name="title_activity_list_directions">ListDirections</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
