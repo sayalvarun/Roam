@@ -2,6 +2,7 @@ package com.example.varun.roam;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,12 +34,14 @@ public class DisplayUber extends ActionBarActivity {
             Log.d("UBER",p.toString());
         }
 
-        ArrayAdapter<String> itemsAdapter;
-
         UberAdapter m_adapter = new UberAdapter(this, R.layout.uber_list_item, products);
-
-        ListView listView = (ListView) findViewById(R.id.directions_view);
+        ListView listView = (ListView) findViewById(R.id.uber_list_view);
         listView.setAdapter(m_adapter);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.setLogo(R.drawable.icon_36);
     }
 
 

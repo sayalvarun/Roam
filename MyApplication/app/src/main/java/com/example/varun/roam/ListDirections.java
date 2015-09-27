@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +20,12 @@ public class ListDirections extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_directions);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.setLogo(R.drawable.icon_36);
+
         String totalDuration = getIntent().getExtras().getString("totalDuration");
         String totalDistance = getIntent().getExtras().getString("totalDistance");
         ArrayList<String> elems = getIntent().getExtras().getStringArrayList("directions");
@@ -31,9 +38,7 @@ public class ListDirections extends AppCompatActivity {
             toStrings.add(directions.get(i).toString());
             Log.d("ELEM:",directions.get(i).toString());
         }
-
-        ArrayAdapter<String> itemsAdapter;
-
+        
         DirectionAdapter m_adapter = new DirectionAdapter(this, R.layout.list_item, directions);
 
         ListView listView = (ListView) findViewById(R.id.directions_view);

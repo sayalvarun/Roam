@@ -2,6 +2,7 @@ package com.example.varun.roam;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,12 +32,19 @@ public class DisplayWeather extends ActionBarActivity {
         TextView tomorrowview = (TextView) findViewById(R.id.tomorrows_weather);
         todayview.setText(today);
         tomorrowview.setText(tomorrow);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.setLogo(R.drawable.icon_36);
     }
 
 
     private void setIcon(WeatherIconView iconView, String iconAPI){
 
         iconView.setIconResource(getString(R.string.wi_alien));
+
+        Log.d("iconAPI", iconAPI);
 
         if(iconAPI.contains("clear-day")){
             iconView.setIconResource(getString(R.string.wi_day_sunny));
