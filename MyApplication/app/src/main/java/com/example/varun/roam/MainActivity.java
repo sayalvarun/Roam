@@ -35,16 +35,13 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View view) {
                     String content = "";
-                    content+= "from: "+source.getText().toString()+"\n";
-                    content+= "to: "+dest.getText().toString();
+                    content+= source.getText().toString()+";";
+                    content+= dest.getText().toString();
                     smsManager.sendTextMessage("17328100017", null, content, null, null);
                 }
             }
         );
     }
-
-    //SmsManager smsManager = SmsManager.getDefault();
-    //smsManager.sendTextMessage("16318962070", null, "Varun is awesome", null, null);
 
 
 
