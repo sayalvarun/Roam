@@ -8,8 +8,8 @@ import sys
 import time
 import zlib
 import pprint
-#from flask import Flask, request, redirect
-#import twilio.twiml
+from flask import Flask, request, redirect
+import twilio.twiml
 import base64
 
 def getProducts(lat, lon):
@@ -28,14 +28,15 @@ def getProducts(lat, lon):
 
     output = "uber"
     for product in data["products"]:
-        output += "~"
-        output += str(product["capacity"]) + ";"
         if product["price_details"] != None:
+            output += "~"
+            output += str(product["capacity"]) + ";"
             output += str(product["price_details"]["base"]) + ";"
             output += str(product["price_details"]["cost_per_distance"]) + ";"
             output += str(product["price_details"]["minimum"])
-
+    
     print(output)
+    return output
  
 def sendTextBelt(phone, message):
     cmd = 'curl -X POST http://textbelt.com/text -d number='
@@ -145,9 +146,13 @@ def recieveMessage():
                 output = encodeComp
         elif command == "uber":
             params = args.split(";")
+	    print("inside if: "+args)
             lat = params[0]
-            lon = param[1]
+            lon = params[1]
             output = getProducts(lat, lon)
+	    compressed = zlib.compress(output)
+            encodeComp = base64.b64encode(compressed)
+            output = encodeComp
         else:
             output = "Error: Invalid Command!"
     else:
