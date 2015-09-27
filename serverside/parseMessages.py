@@ -55,6 +55,29 @@ def getDirections(source, destination):
         i = i + 1
 
     return (0, out)
+    
+def getWeather(latitude, longitude):
+    api_url = "https://api.forecast.io/forecast/"
+    api_key = "b331b49ba65c13f9e9c3326dbd4475ef/"
+
+    result = "weather~"
+    rescode = 0;
+    try:
+        currtime = int(time.time())
+        print currtime
+        nextday = currtime + (24*60*60)
+        print nextday
+        #print api_url + api_key + latitude + "," + longitude + "," + str(currtime)
+        pgjson = requests.get(api_url + api_key + latitude + "," + longitude + "," + str(currtime)).json()
+        result += pgjson['hourly']['summary']
+        pgjson = requests.get(api_url + api_key + latitude + "," + longitude + "," + str(nextday)).json()
+        result += ";"
+        result += pgjson['hourly']['summary']
+    except Exception, e:
+        result += "Error in retreiving data"
+        rescode = 1;
+        
+    return (rescode, result)
 
 ###################################################################################################################################
 
@@ -78,6 +101,13 @@ def recieveMessage():
         if command == "directions":
             params = args.split(";")
             err, output = getDirections(str(params[0]), str(params[1]))
+            if err == 0:
+                compressed = zlib.compress(output)
+                encodeComp = base64.b64encode(compressed)
+                output = encodeComp
+        elif command == "weather":
+            params = args.split(";")
+            err, output = getWeather(str(params[0]), str(params[1]))
             if err == 0:
                 compressed = zlib.compress(output)
                 encodeComp = base64.b64encode(compressed)
