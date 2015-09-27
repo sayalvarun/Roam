@@ -37,6 +37,9 @@ def getDirections(source, destination):
     url = getURL(source, destination)
     r = requests.get(url)   
     obj = r.json()
+    status = obj["status"]
+    if status != "OK":
+        return (1, "Error: bad status from Google Maps!")
 
     distance = obj["routes"][0]["legs"][0]["distance"]["text"]
     duration = obj["routes"][0]["legs"][0]["duration"]["text"]
@@ -51,7 +54,7 @@ def getDirections(source, destination):
         out += ("~" + str(dist) + ";" + str(dur) + ";" + str(directions))
         i = i + 1
 
-    return out
+    return (0, out)
 
 ###################################################################################################################################
 
@@ -74,13 +77,16 @@ def recieveMessage():
     
         if command == "directions":
        	    params = args.split(";")
-            output = getDirections(str(params[0]), str(params[1]))
-            compressed = zlib.compress(output)
-            encodeComp = base64.b64encode(compressed)
-            output = encodeComp
+            err, output = getDirections(str(params[0]), str(params[1]))
+            if err == 0:
+                compressed = zlib.compress(output)
+                encodeComp = base64.b64encode(compressed)
+                output = encodeComp
+        else:
+            output = "Error: Invalid Command!"
 
 	else:
-   	    output = "Error: Invalid Command!" 
+   	    output = "Error: Empty Message!" 
 
     resp = twilio.twiml.Response()
     resp.message(output)
