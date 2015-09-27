@@ -43,7 +43,7 @@ def getDirections(source, destination):
 
     distance = obj["routes"][0]["legs"][0]["distance"]["text"]
     duration = obj["routes"][0]["legs"][0]["duration"]["text"]
-    out = str(distance) + ";" + str(duration)
+    out = "directions~" + str(distance) + ";" + str(duration)
     steps = obj["routes"][0]["legs"][0]["steps"]
     i = 1
     for step in steps:
