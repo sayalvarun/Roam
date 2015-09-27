@@ -30,7 +30,7 @@ public class UberAdapter extends ArrayAdapter<Product> {
         // to inflate it basically means to render, or show, the view.
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inflater.inflate(R.layout.uber_list_item, null);
+            v = inflater.inflate(R.layout.list_item, null);
         }
 
 		/*
@@ -52,23 +52,22 @@ public class UberAdapter extends ArrayAdapter<Product> {
             TextView cpm = (TextView) v.findViewById(R.id.cpm);
             TextView min = (TextView) v.findViewById(R.id.minimum);
 
-            if(!(i.base).equals("0.0")) {
-                // check to see if each individual textview is null.
-                // if not, assign some text!
-                if (capacity != null) {
-                    capacity.setText("Capacity: " + i.capacity);
-                }
-
-                if (base != null) {
-                    base.setText("Base fare: " + i.base);
-                }
-                if (cpm != null) {
-                    cpm.setText("Cost Per Mile: " + i.cost_per_mile);
-                }
-                if (min != null) {
-                    min.setText("Minimum Fare" + i.minimum);
-                }
+            // check to see if each individual textview is null.
+            // if not, assign some text!
+            if (capacity != null){
+                capacity.setText(i.capacity);
             }
+
+            if (base != null){
+                base.setText(i.base);
+            }
+            if (cpm != null){
+                cpm.setText(i.cost_per_mile);
+            }
+            if(min != null){
+                min.setText(i.minimum);
+            }
+
         }
 
         // the view must be returned to our activity
