@@ -1,18 +1,48 @@
 package com.example.varun.roam;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.provider.Telephony;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.telephony.SmsManager;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends Activity {
+
+    EditText source = null;
+    EditText dest = null;
+    Button button = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
+        registerReceiver(new SmsListener(),filter);
+        source = (EditText) findViewById(R.id.sourceTextField);
+        dest = (EditText) findViewById(R.id.destinationTextField);
+        button = (Button) findViewById(R.id.getDirectionsButton);
+        final SmsManager smsManager = SmsManager.getDefault();
+
+        button.setOnClickListener(
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String content = "";
+                    content+= source.getText().toString()+";";
+                    content+= dest.getText().toString();
+                    smsManager.sendTextMessage("17328100017", null, content, null, null);
+                }
+            }
+        );
     }
+
 
 
     @Override
