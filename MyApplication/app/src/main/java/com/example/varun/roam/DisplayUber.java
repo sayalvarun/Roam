@@ -29,15 +29,15 @@ public class DisplayUber extends ActionBarActivity {
             Log.d("UBER","outputs[i]: "+outputs[i]);
             Product p = new Product(elems[0],elems[1],elems[2],elems[3]);
             productStrings.add(p.toString());
+            products.add(p);
             Log.d("UBER",p.toString());
         }
 
         ArrayAdapter<String> itemsAdapter;
-        itemsAdapter = new ArrayAdapter<String>(this, R.layout.list_item, productStrings);
 
-        DirectionAdapter m_adapter = new DirectionAdapter(this, R.layout.list_item, products);
+        UberAdapter m_adapter = new UberAdapter(this, R.layout.uber_list_item, products);
 
-        ListView listView = (ListView) findViewById(R.id.uber_list_view);
+        ListView listView = (ListView) findViewById(R.id.directions_view);
         listView.setAdapter(m_adapter);
     }
 

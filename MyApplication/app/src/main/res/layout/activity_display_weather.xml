@@ -13,6 +13,7 @@
         android:id="@+id/today_weather_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         custom:weatherIconColor="@android:color/black"
         custom:weatherIconSize="100" />
 
@@ -24,12 +25,14 @@
         android:textColor="@color/green400"
         android:id="@+id/todays_weather"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/today_weather_icon"
         android:layout_marginTop="46dp" />
 
     <com.github.pwittchen.weathericonview.WeatherIconView
         android:id="@+id/tomorrow_weather_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         custom:weatherIconColor="@android:color/black"
         custom:weatherIconSize="100" />
 
@@ -40,7 +43,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
         android:id="@+id/tomorrows_weather"
-        android:layout_below="@+id/todays_weather"
-        android:layout_alignStart="@+id/todays_weather" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tomorrow_weather_icon" />
 
 </RelativeLayout>

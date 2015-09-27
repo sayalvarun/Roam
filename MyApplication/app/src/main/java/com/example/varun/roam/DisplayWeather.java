@@ -22,7 +22,7 @@ public class DisplayWeather extends ActionBarActivity {
         String tomorrowIcon = getIntent().getExtras().getString("tomorrowsWeatherIcon");
 
         WeatherIconView todayIconView = (WeatherIconView) findViewById(R.id.today_weather_icon);
-        WeatherIconView tomorrowIconView = (WeatherIconView) findViewById(R.id.today_weather_icon);
+        WeatherIconView tomorrowIconView = (WeatherIconView) findViewById(R.id.tomorrow_weather_icon);
 
         setIcon(todayIconView, todayIcon);
         setIcon(tomorrowIconView, tomorrowIcon);
