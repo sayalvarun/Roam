@@ -13,5 +13,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="get_weather_button">Weather</string>
     <string name="title_activity_display_weather">DisplayWeather</string>
+    <string name="get_uber_button_text">Uber</string>
+    <string name="title_activity_display_uber">DisplayUber</string>
 
 </resources>

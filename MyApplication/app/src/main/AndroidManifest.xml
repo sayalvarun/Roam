@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <receiver android:name=".listener.SmsListener" >
         <intent-filter android:priority="1000" >
@@ -42,6 +42,10 @@
         <activity
             android:name=".DisplayWeather"
             android:label="@string/title_activity_display_weather" >
+        </activity>
+        <activity
+            android:name=".DisplayUber"
+            android:label="@string/title_activity_display_uber" >
         </activity>
     </application>
 

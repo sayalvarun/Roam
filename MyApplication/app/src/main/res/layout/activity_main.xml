@@ -20,7 +20,8 @@
         android:paddingRight="30dp"
         android:src="@drawable/roam"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp" />
+        android:layout_marginTop="150dp"
+        android:id="@+id/imageView2" />
 
 
     <Button
@@ -33,9 +34,9 @@
         android:drawableLeft="@drawable/map_33"
         android:drawablePadding="10dp"
         android:textColor="@color/white"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="330dp"
-        style="?android:attr/borderlessButtonStyle"/>
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/uber_button" />
 
     <Button
         android:layout_width="150dp"
@@ -47,10 +48,25 @@
         android:drawableLeft="@drawable/map_33"
         android:drawablePadding="10dp"
         android:textColor="@color/white"
-        android:layout_marginTop="30dp"
         style="?android:attr/borderlessButtonStyle"
+        android:layout_below="@+id/uber_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="57dp" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/get_uber_button_text"
+        android:id="@+id/uber_button"
+        android:background="@drawable/directions_ripple"
+        android:onClick="getDirections"
+        android:drawableLeft="@drawable/map_33"
+        android:drawablePadding="10dp"
+        android:textColor="@color/white"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_marginTop="57dp"
         android:layout_below="@+id/g_maps_button"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/weather_button" />
 
 
 </RelativeLayout>

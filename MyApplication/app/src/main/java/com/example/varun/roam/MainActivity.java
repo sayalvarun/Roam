@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button gMapsButton = null;
     Button weatherButton = null;
+    Button uberButton = null;
     final SmsManager smsManager = SmsManager.getDefault();
 
     @Override
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         gMapsButton = (Button) findViewById(R.id.g_maps_button);
         weatherButton = (Button) findViewById(R.id.weather_button);
+        uberButton = (Button) findViewById(R.id.uber_button);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
         registerReceiver(new WeatherSMSListener(), filter);
+        registerReceiver(new UberSMSListener(),filter);
     }
 
     private void setListeners(){
@@ -70,6 +73,23 @@ public class MainActivity extends AppCompatActivity {
                         content+= String.valueOf(latitude)+";";
                         content+= String.valueOf(longitude);
                         
+                        smsManager.sendTextMessage("17328100017", null, content, null, null);
+                    }
+                }
+        );
+
+        weatherButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String content = "uber~";
+                        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                        double longitude = location.getLongitude();
+                        double latitude = location.getLatitude();
+                        content+= String.valueOf(latitude)+";";
+                        content+= String.valueOf(longitude);
+
                         smsManager.sendTextMessage("17328100017", null, content, null, null);
                     }
                 }
