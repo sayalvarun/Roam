@@ -2,8 +2,15 @@
 <resources>
 
     <string name="app_name">Roam</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="logo">Roam Logo</string>
+    <string name="app_icon">Roam Icon</string>
+    <string name="directions">Directions</string>
     <string name="action_settings">Settings</string>
-    <string name="get_directions">Get Directions!</string>
+    <string name="get_directions">Get Directions</string>
+    <string name="title_activity_input_google_maps">Get Some Directions!</string>
+    <string name="google_maps_activity_button">Google Maps</string>
+    <string name="title_activity_list_directions">ListDirections</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

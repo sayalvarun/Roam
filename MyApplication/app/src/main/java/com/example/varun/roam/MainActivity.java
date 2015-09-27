@@ -1,49 +1,54 @@
 package com.example.varun.roam;
 
+import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.support.v7.widget.Toolbar;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.content.Intent;
 
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends Activity {
-
-    EditText source = null;
-    EditText dest = null;
-    Button button = null;
+    Button gMapsButton = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
-        registerReceiver(new SmsListener(),filter);
-        source = (EditText) findViewById(R.id.sourceTextField);
-        dest = (EditText) findViewById(R.id.destinationTextField);
-        button = (Button) findViewById(R.id.getDirectionsButton);
-        final SmsManager smsManager = SmsManager.getDefault();
+        gMapsButton = (Button) findViewById(R.id.g_maps_button);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        myToolbar.setLogo(R.drawable.icon_36);
+        setGMapsListener();
+    }
 
-        button.setOnClickListener(
-            new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String content = "";
-                    content+= source.getText().toString()+";";
-                    content+= dest.getText().toString();
-                    smsManager.sendTextMessage("17328100017", null, content, null, null);
+    private void setGMapsListener(){
+        gMapsButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), InputGoogleMaps.class);
+                        startActivity(intent);
+                    }
                 }
-            }
         );
     }
 
-
+    public void getDirections(View view) {
+        Intent intent = new Intent(this, InputGoogleMaps.class);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -66,4 +71,5 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
