@@ -7,7 +7,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.SmsManager;
-import android.transition.Fade;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,8 +44,9 @@ public class InputGoogleMaps extends Activity {
                     @Override
                     public void onClick(View view) {
                         String content = "";
-                        content+= source.getText().toString()+";";
+                        content+= source.getText().toString().replace(" ","")+";";
                         content+= dest.getText().toString();
+                        //Log.d("DEBUG:",content);
                         smsManager.sendTextMessage("17328100017", null, content, null, null);
                     }
                 }
