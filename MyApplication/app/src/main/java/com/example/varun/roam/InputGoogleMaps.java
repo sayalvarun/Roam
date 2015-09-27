@@ -21,6 +21,7 @@ public class InputGoogleMaps extends Activity {
     EditText source = null;
     EditText dest = null;
     Button button = null;
+    final SmsListener s = new SmsListener();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,7 @@ public class InputGoogleMaps extends Activity {
         setContentView(R.layout.activity_input_google_maps);
         Intent intent = getIntent();
         IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
-        registerReceiver(new SmsListener(), filter);
+        registerReceiver(s, filter);
 
        // Typeface myTypeface = Typeface.createFromAsset(getAssets(), "xiomara.ttf");
        // TextView myTextView = (TextView)findViewById(R.id.directionsText);
@@ -74,5 +75,11 @@ public class InputGoogleMaps extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        unregisterReceiver(s);
     }
 }

@@ -24,7 +24,7 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="@string/directions"
         android:id="@+id/g_maps_button"
@@ -36,6 +36,21 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="270dp"
         style="?android:attr/borderlessButtonStyle"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/get_weather_button"
+        android:id="@+id/weather_button"
+        android:background="@drawable/directions_ripple"
+        android:onClick="getDirections"
+        android:drawableLeft="@drawable/map_33"
+        android:drawablePadding="10dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_below="@+id/g_maps_button"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
