@@ -6,50 +6,55 @@
     android:padding="6dip">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="26dip"
-        android:layout_alignParentLeft="true" />
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/directImage"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="10dp"/>
 
 
     <!-- Distance -->
-    <TextView
-        android:id="@+id/toptext"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-
-        android:textStyle="bold"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:textColor="@color/green600"
-        />
-
-    <!-- Duration -->
-    <TextView
-        android:id="@+id/middletext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/toptext"
-        android:textStyle="bold"
-        android:gravity="center_vertical"
-        android:textColor="@color/green600"
-        />
-
-    <!-- Instruction -->
-    <TextView
-        android:id="@+id/middletextdata"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toptext"
-        android:layout_toEndOf="@id/middletext"
-        android:layout_marginLeft="5dp"
-        android:textColor="@color/green400"
-        android:gravity="center_vertical"
-        />
+        android:layout_toEndOf="@+id/directImage"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/toptext"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:textColor="@color/green600"
+            />
+
+        <!-- Duration -->
+        <TextView
+            android:id="@+id/middletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/toptext"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:textColor="@color/green600"
+            />
+
+        <!-- Instruction -->
+        <TextView
+            android:id="@+id/middletextdata"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/middletext"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/green400"
+            android:gravity="center_vertical"
+            />
+    </RelativeLayout>
 
 
 </RelativeLayout>

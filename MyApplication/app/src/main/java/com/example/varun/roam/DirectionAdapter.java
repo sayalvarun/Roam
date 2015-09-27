@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -51,6 +52,7 @@ public class DirectionAdapter extends ArrayAdapter<Direction>{
             TextView direc = (TextView) v.findViewById(R.id.toptext);
             TextView dur = (TextView) v.findViewById(R.id.middletext);
             TextView instr = (TextView) v.findViewById(R.id.middletextdata);
+            ImageView pic = (ImageView) v.findViewById(R.id.directImage);
 
             // check to see if each individual textview is null.
             // if not, assign some text!
@@ -64,7 +66,23 @@ public class DirectionAdapter extends ArrayAdapter<Direction>{
             if (instr != null){
                 instr.setText(i.getDirectionText());
             }
-            
+            String directionText = i.getDirectionText();
+
+            if(directionText.toLowerCase().contains("left")){
+                pic.setImageResource(R.drawable.left);
+            }
+
+            if(directionText.toLowerCase().contains("right")){
+                pic.setImageResource(R.drawable.right);
+            }
+
+            if(directionText.toLowerCase().contains("continue")){
+                pic.setImageResource(R.drawable.straight);
+            }
+
+            if(position == objects.size() - 1){
+                pic.setImageResource(R.drawable.pin);
+            }
         }
 
         // the view must be returned to our activity
