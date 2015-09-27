@@ -5,8 +5,8 @@ import re
 import os
 import json
 
-from flask import Flask, request, redirect
-import twilio.twiml
+#from flask import Flask, request, redirect
+#import twilio.twiml
 
 def sendText(phone, message):
     cmd = 'curl -X POST http://textbelt.com/text -d number='
@@ -17,7 +17,7 @@ def sendText(phone, message):
     os.system(cmd)
  
 def getKey():
-    f = open(key.txt)
+    f = open('../key.txt')
     key = f.read()
     return key
 
@@ -25,14 +25,17 @@ def getURL(source, destination):
     url = 'https://maps.googleapis.com/maps/api/directions/json?origin='
     url += source
     url += "&destination="
+    url += destination
     url += "&key="
     url += getKey()
+    return string.replace(url, "\n", "")
 
 def getDirections(source, destination):
     url = getURL(source, destination)
+    print("Getting: " + url)
     r = requests.get(url)   
-    
     obj = r.json()
+
     distance = obj["routes"][0]["legs"][0]["distance"]["text"]
     duration = obj["routes"][0]["legs"][0]["duration"]["text"]
     out = str(distance) + ";" + str(duration)
@@ -49,6 +52,7 @@ def getDirections(source, destination):
     return out
 
 ###################################################################################################################################
+
 app = Flask(__name__)
  
 @app.route("/", methods=['GET', 'POST'])
@@ -57,6 +61,7 @@ def recieveMessage():
     msg = request.values.get('Body', None)
     recvNumber = reques.values.get('From', None)
     if msg is not None:
+        msg = string.replace(msg, " ", "")
     	params = msg.split(";")
         output = getDirections(params[0], params[1])
         sendText(recvNumber, output)
