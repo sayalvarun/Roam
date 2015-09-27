@@ -5,15 +5,18 @@ import re
 import os
 import json
 
-#from flask import Flask, request, redirect
-#import twilio.twiml
+from flask import Flask, request, redirect
+import twilio.twiml
 
 def sendText(phone, message):
+    #print("#= "+phone)
+    #print("msg = "+message)
     cmd = 'curl -X POST http://textbelt.com/text -d number='
     cmd += phone
     cmd += ' -d "message='
     cmd += message
     cmd += '"'
+    print("cmd = "+cmd)
     os.system(cmd)
  
 def getKey():
@@ -23,14 +26,21 @@ def getKey():
 
 def getURL(source, destination):
     url = 'https://maps.googleapis.com/maps/api/directions/json?origin='
+    print("url is now: "+url)
     url += source
+    print("url is now: "+url)
     url += "&destination="
+    print("url is now: "+url)
     url += destination
+    print("url is now: "+url)
     url += "&key="
+    print("url is now: "+url)
     url += getKey()
+    #print("getURL is: "+url.replace(url,"\n",""))
     return string.replace(url, "\n", "")
 
 def getDirections(source, destination):
+    print("so jank get directions")
     url = getURL(source, destination)
     print("Getting: " + url)
     r = requests.get(url)   
@@ -59,18 +69,23 @@ app = Flask(__name__)
 def recieveMessage():
     """Respond to incoming calls with a simple text message."""
     msg = request.values.get('Body', None)
-    recvNumber = reques.values.get('From', None)
+    print("msg received"+msg)
+    recvNumber = string.replace(request.values.get('From', None),"+","")
+    recvNumber = recvNumber[-10:]
     if msg is not None:
-        msg = string.replace(msg, " ", "")
     	params = msg.split(";")
-        output = getDirections(params[0], params[1])
-        sendText(recvNumber, output)
+        output = getDirections(str(params[0]), str(params[1]))
+        #sendText(recvNumber, output)
         print(output)
+	
+    	resp = twilio.twiml.Response()
+    	resp.message(output[:1500])
+        return str(resp)
     else:
    	    msg = "Invalid" 
 
     #resp = twilio.twiml.Response()
-    #resp.message("Hello, Mobile Monkey")
+    #resp.message(output)
     #return str(resp)
  
 if __name__ == "__main__":
