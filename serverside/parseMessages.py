@@ -4,7 +4,7 @@ import string
 import re
 import os
 import json
-
+import zlib
 from flask import Flask, request, redirect
 import twilio.twiml
 
@@ -77,10 +77,11 @@ def recieveMessage():
         output = getDirections(str(params[0]), str(params[1]))
         #sendText(recvNumber, output)
         print(output)
-	
+	    compressed = zlib.compress()
+        print("Compressed: " + str(compressed))
     	resp = twilio.twiml.Response()
     	resp.message(output[:1500])
-        return str(resp)
+        return str(compressed)
     else:
    	    msg = "Invalid" 
 
