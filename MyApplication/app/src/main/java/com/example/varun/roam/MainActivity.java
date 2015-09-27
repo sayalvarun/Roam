@@ -28,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     Button weatherButton = null;
     Button uberButton = null;
     final SmsManager smsManager = SmsManager.getDefault();
+    final WeatherSMSListener weatherReceiver = new WeatherSMSListener();
+    final UberSMSListener uberReceiver = new UberSMSListener();
+    final IntentFilter filter =  new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
+    boolean weatherOn = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +46,8 @@ public class MainActivity extends AppCompatActivity {
         myToolbar.setLogo(R.drawable.icon_36);
         setListeners();
         Intent intent = getIntent();
-        IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
-        registerReceiver(new WeatherSMSListener(), filter);
-        registerReceiver(new UberSMSListener(),filter);
+        registerReceiver(weatherReceiver, filter);
+        weatherOn = true;
     }
 
     private void setListeners(){
@@ -65,6 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if(!weatherOn){
+                            unregisterReceiver(uberReceiver);
+                            registerReceiver(weatherReceiver,filter);
+                            weatherOn = true;
+                        }
                         String content = "weather~";
                         LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
                         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -78,10 +86,15 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-        weatherButton.setOnClickListener(
+        uberButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if(weatherOn){
+                            unregisterReceiver(weatherReceiver);
+                            registerReceiver(uberReceiver, filter);
+                            weatherOn = false;
+                        }
                         String content = "uber~";
                         LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
                         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);

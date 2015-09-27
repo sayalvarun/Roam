@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -16,14 +18,27 @@ public class DisplayUber extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_uber);
-        ArrayList<String> productStrings = getIntent().getExtras().getStringArrayList("products");
+        Log.d("UBER", "I am in the activity!");
+        String outputString = getIntent().getStringExtra("productStrings");
+        String[] outputs = outputString.split("~");
         ArrayList<Product> products = new ArrayList<Product>();
-        for(String s: productStrings){
-            String[] elems = s.split(";");
-            Product p = new Product(elems[0],elems[1],elems[2],elems[3],elems[4]);
-            products.add(p);
-            Log.d("UBER", p.toString());
+        ArrayList<String> productStrings = new ArrayList<String>();
+
+        for(int i=1; i< outputs.length; i++){
+            String[] elems = outputs[i].split(";");
+            Log.d("UBER","outputs[i]: "+outputs[i]);
+            Product p = new Product(elems[0],elems[1],elems[2],elems[3]);
+            productStrings.add(p.toString());
+            Log.d("UBER",p.toString());
         }
+
+        ArrayAdapter<String> itemsAdapter;
+        itemsAdapter = new ArrayAdapter<String>(this, R.layout.list_item, productStrings);
+
+        DirectionAdapter m_adapter = new DirectionAdapter(this, R.layout.list_item, products);
+
+        ListView listView = (ListView) findViewById(R.id.uber_list_view);
+        listView.setAdapter(m_adapter);
     }
 
 
