@@ -7,11 +7,36 @@ import json
 import sys
 import time
 import zlib
-from flask import Flask, request, redirect
-import twilio.twiml
+import pprint
+#from flask import Flask, request, redirect
+#import twilio.twiml
 import base64
 
+def getProducts(lat, lon):
+    token = getServerToken()
+    cmd = "curl -H 'Authorization: Token "
+    cmd += token
+    cmd += "' 'https://api.uber.com/v1/products?latitude="
+    cmd += lat
+    cmd += "&longitude="
+    cmd += lon
+    cmd += "' > out.json"
+    print("cmd: " + cmd)
+    os.system(cmd)
+    with open('out.json') as data_file:
+        data = json.load(data_file)
 
+    output = "uber"
+    for product in data["products"]:
+        output += "~"
+        output += str(product["capacity"]) + ";"
+        if product["price_details"] != None:
+            output += str(product["price_details"]["base"]) + ";"
+            output += str(product["price_details"]["cost_per_distance"]) + ";"
+            output += str(product["price_details"]["minimum"])
+
+    print(output)
+ 
 def sendTextBelt(phone, message):
     cmd = 'curl -X POST http://textbelt.com/text -d number='
     cmd += phone
@@ -20,6 +45,11 @@ def sendTextBelt(phone, message):
     cmd += '"'
     #print("cmd = "+cmd)
     os.system(cmd)
+
+def getServerToken():
+    f = open('../token.txt')
+    token = f.read()
+    return token
  
 def getKey():
     f = open('../key.txt')
@@ -82,7 +112,6 @@ def getWeather(latitude, longitude):
     return (rescode, result)
 
 ###################################################################################################################################
-
 app = Flask(__name__)
  
 @app.route("/", methods=['GET', 'POST'])
@@ -99,7 +128,7 @@ def recieveMessage():
         arr = msg.split("~")
         command = arr[0]
         args = arr[1]
-
+        print("command: " + command + ", args: " + args)
         if command == "directions":
             params = args.split(";")
             err, output = getDirections(str(params[0]), str(params[1]))
@@ -114,6 +143,11 @@ def recieveMessage():
                 compressed = zlib.compress(output)
                 encodeComp = base64.b64encode(compressed)
                 output = encodeComp
+        elif command == "uber":
+            params = args.split(";")
+            lat = params[0]
+            lon = param[1]
+            output = getProducts(lat, lon)
         else:
             output = "Error: Invalid Command!"
     else:
