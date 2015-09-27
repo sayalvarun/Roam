@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Roam</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="directions">Directions</string>
     <string name="action_settings">Settings</string>
 
 </resources>
