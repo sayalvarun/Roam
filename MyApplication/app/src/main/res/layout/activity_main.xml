@@ -31,12 +31,13 @@
         android:id="@+id/g_maps_button"
         android:background="@drawable/directions_ripple"
         android:onClick="getDirections"
-        android:drawableLeft="@drawable/map_33"
-        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/map_25"
+        android:drawablePadding="20dp"
         android:textColor="@color/white"
+        android:layout_marginTop="30dp"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/uber_button" />
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="150dp"
@@ -45,13 +46,13 @@
         android:id="@+id/weather_button"
         android:background="@drawable/directions_ripple"
         android:onClick="getDirections"
-        android:drawableLeft="@drawable/map_33"
+        android:drawableLeft="@drawable/sun_25"
         android:drawablePadding="10dp"
         android:textColor="@color/white"
+        android:layout_marginTop="20dp"
         style="?android:attr/borderlessButtonStyle"
         android:layout_below="@+id/uber_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="150dp"
@@ -60,13 +61,13 @@
         android:id="@+id/uber_button"
         android:background="@drawable/directions_ripple"
         android:onClick="getDirections"
-        android:drawableLeft="@drawable/map_33"
+        android:drawableLeft="@drawable/uber_25"
+        android:layout_marginTop="20dp"
         android:drawablePadding="10dp"
         android:textColor="@color/white"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_marginTop="57dp"
         android:layout_below="@+id/g_maps_button"
-        android:layout_alignStart="@+id/weather_button" />
+        android:layout_alignStart="@+id/g_maps_button" />
 
 
 </RelativeLayout>
