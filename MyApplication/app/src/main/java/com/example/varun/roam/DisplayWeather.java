@@ -16,6 +16,8 @@ public class DisplayWeather extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_weather);
+
+
         String today = getIntent().getExtras().getString("todaysWeather");
         String tomorrow = getIntent().getExtras().getString("tomorrowsWeather");
         String todayIcon = getIntent().getExtras().getString("todaysWeatherIcon");

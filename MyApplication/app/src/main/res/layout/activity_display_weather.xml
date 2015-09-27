@@ -33,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/todays_weather"
         custom:weatherIconColor="@android:color/black"
         custom:weatherIconSize="100" />
 

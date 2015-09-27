@@ -19,6 +19,8 @@ public class DisplayUber extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_uber);
         Log.d("UBER", "I am in the activity!");
+
+
         String outputString = getIntent().getStringExtra("productStrings");
         String[] outputs = outputString.split("~");
         ArrayList<Product> products = new ArrayList<Product>();
@@ -36,8 +38,7 @@ public class DisplayUber extends ActionBarActivity {
         ArrayAdapter<String> itemsAdapter;
 
         UberAdapter m_adapter = new UberAdapter(this, R.layout.uber_list_item, products);
-
-        ListView listView = (ListView) findViewById(R.id.directions_view);
+        ListView listView = (ListView) findViewById(R.id.uber_list_view);
         listView.setAdapter(m_adapter);
     }
 
