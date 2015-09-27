@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Roam</string>
+    <string name="logo">Roam Logo</string>
     <string name="directions">Directions</string>
     <string name="action_settings">Settings</string>
 
