@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="@drawable/background_with_shadow"
+    android:layout_marginTop="5dp"
+    android:padding="6dip">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp">
+
+        <!-- Capacity -->
+        <TextView
+            android:id="@+id/capacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:textColor="@color/green600"
+            />
+
+        <!-- Base -->
+        <TextView
+            android:id="@+id/base"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/capacity"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            android:textColor="@color/green600"
+            />
+
+        <!-- CPM -->
+        <TextView
+            android:id="@+id/cpm"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/green400"
+            android:gravity="center_vertical"
+            />
+
+        <!-- Minimum -->
+        <TextView
+            android:id="@+id/minimum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/green400"
+            android:gravity="center_vertical"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>

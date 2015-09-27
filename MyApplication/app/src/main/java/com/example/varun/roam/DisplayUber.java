@@ -35,7 +35,7 @@ public class DisplayUber extends ActionBarActivity {
         ArrayAdapter<String> itemsAdapter;
         itemsAdapter = new ArrayAdapter<String>(this, R.layout.list_item, productStrings);
 
-        DirectionAdapter m_adapter = new DirectionAdapter(this, R.layout.list_item, products);
+        UberAdapter m_adapter = new UberAdapter(this, R.layout.uber_list_item, products);
 
         ListView listView = (ListView) findViewById(R.id.uber_list_view);
         listView.setAdapter(m_adapter);

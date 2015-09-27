@@ -5,6 +5,6 @@ import android.widget.ArrayAdapter;
 /**
  * Created by varun on 9/27/15.
  */
-public class UberAdapter extends ArrayAdapter<Product> {
+public class UberAdapter {
 
 }
