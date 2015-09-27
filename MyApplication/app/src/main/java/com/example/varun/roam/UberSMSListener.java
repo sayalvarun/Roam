@@ -4,24 +4,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
 import android.util.Base64;
 import android.util.Log;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.zip.GZIPInputStream;
 import java.util.zip.Inflater;
 
 /**
- * Created by varun on 9/26/15.
+ * Created by varun on 9/27/15.
  */
-public class SmsListener extends BroadcastReceiver{
+public class UberSMSListener extends BroadcastReceiver {
     private SharedPreferences preferences;
 
 
@@ -34,7 +28,7 @@ public class SmsListener extends BroadcastReceiver{
                 base+=messageBody;
 
             }
-            Log.d("DEBUG before decode:",base);
+            Log.d("DEBUG before decode:", base);
             byte[] data = Base64.decode(base, Base64.DEFAULT);
             Inflater decompressor = new Inflater();
             decompressor.setInput(data);
@@ -44,22 +38,18 @@ public class SmsListener extends BroadcastReceiver{
                 decompressor.end();
                 String outputString = new String(res, 0, resultLength, "UTF-8");
 
-                Log.d("DATA*****",outputString);
                 String command = outputString.split("~")[0];
-                if(command.equals("directions")) {
-                    String[] elems = outputString.split("~");
-                    String totalDistance = elems[1].split(";")[0];
-                    String totalTime = elems[1].split(";")[1];
-
-                    Intent newIntent = new Intent(context, ListDirections.class)
+                Log.d("WEATHER",command);
+                if(command.equals("uber")) {
+                    Intent newIntent = new Intent(context, DisplayUber.class)
                             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    newIntent.putExtra("totalDistance", totalDistance);
-                    newIntent.putExtra("totalDuration", totalTime);
-                    ArrayList<String> list = new ArrayList<String>();
-                    for (int i = 2; i < elems.length; i++) {
-                        list.add(elems[i]);
+
+                    String[] weatherData = outputString.split("~");
+                    ArrayList<String> products = new ArrayList<String>();
+                    for(int i=1; i<products.size(); i++){
+                        products.add(weatherData[i]);
                     }
-                    newIntent.putExtra("directions", list);
+                    newIntent.putExtra("productStrings", products);
                     context.startActivity(newIntent);
                 }
             }catch(Exception r){

@@ -1,7 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="@color/green50"
     tools:context="com.example.varun.roam.InputGoogleMaps">
 
@@ -9,6 +8,7 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:elevation="4dp"
+        android:fitsSystemWindows="true"
         android:theme="@style/Toolbar"
         android:popupTheme="@style/Toolbar_Popup"
         android:layout_height="wrap_content" />
@@ -25,10 +25,11 @@
         android:id="@+id/imageView" />
 
     <EditText
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/green400"
         android:id="@+id/sourceTextField"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textTo"
@@ -36,8 +37,9 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:textColor="@color/green400"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/destinationTextField"
@@ -48,7 +50,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/get_directions"
         android:id="@+id/getDirectionsButton"
         android:background="@drawable/directions_ripple"
@@ -72,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Where to?"
+        android:text="Where from?"
         android:textColor="@color/green500"
         android:id="@+id/textTo"
         android:layout_below="@+id/directionsText"
@@ -84,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Where from?"
+        android:text="Where to?"
         android:id="@+id/textFrom"
         android:textColor="@color/green500"
         android:layout_below="@+id/sourceTextField"
