@@ -7,6 +7,7 @@ import json
 import zlib
 from flask import Flask, request, redirect
 import twilio.twiml
+import base64
 
 def sendText(phone, message):
     #print("#= "+phone)
@@ -16,7 +17,7 @@ def sendText(phone, message):
     cmd += ' -d "message='
     cmd += message
     cmd += '"'
-    print("cmd = "+cmd)
+    #print("cmd = "+cmd)
     os.system(cmd)
  
 def getKey():
@@ -26,23 +27,23 @@ def getKey():
 
 def getURL(source, destination):
     url = 'https://maps.googleapis.com/maps/api/directions/json?origin='
-    print("url is now: "+url)
+    #print("url is now: "+url)
     url += source
-    print("url is now: "+url)
+    #print("url is now: "+url)
     url += "&destination="
-    print("url is now: "+url)
+    #print("url is now: "+url)
     url += destination
-    print("url is now: "+url)
+    #print("url is now: "+url)
     url += "&key="
-    print("url is now: "+url)
+    ##print("url is now: "+url)
     url += getKey()
     #print("getURL is: "+url.replace(url,"\n",""))
     return string.replace(url, "\n", "")
 
 def getDirections(source, destination):
-    print("so jank get directions")
+    #print("so jank get directions")
     url = getURL(source, destination)
-    print("Getting: " + url)
+    #print("Getting: " + url)
     r = requests.get(url)   
     obj = r.json()
 
@@ -72,22 +73,25 @@ def recieveMessage():
     print("msg received"+msg)
     recvNumber = string.replace(request.values.get('From', None),"+","")
     recvNumber = recvNumber[-10:]
+    output = ""
     if msg is not None:
     	params = msg.split(";")
         output = getDirections(str(params[0]), str(params[1]))
         #sendText(recvNumber, output)
-        print(output)
-	    compressed = zlib.compress()
-        print("Compressed: " + str(compressed))
-    	resp = twilio.twiml.Response()
-    	resp.message(output[:1500])
-        return str(compressed)
+        #print(output)
+	compressed = zlib.compress(output)
+        encodeComp = base64.b64encode(compressed)
+	output = encodeComp
+	#print("Printing Compressed! ")
+	print(compressed)
+	print(encodeComp)
+	print(base64.b64decode(encodeComp))
     else:
-   	    msg = "Invalid" 
+   	msg = "Invalid" 
 
-    #resp = twilio.twiml.Response()
-    #resp.message(output)
-    #return str(resp)
+    resp = twilio.twiml.Response()
+    resp.message(output)
+    return str(resp)
  
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
