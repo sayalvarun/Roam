@@ -55,6 +55,7 @@ app = Flask(__name__)
 def recieveMessage():
     """Respond to incoming calls with a simple text message."""
     msg = request.values.get('Body', None)
+    print(msg)
     recvNumber = reques.values.get('From', None)
     if msg is not None:
     	params = msg.split(";")
@@ -62,7 +63,10 @@ def recieveMessage():
         sendText(recvNumber, output)
         print(output)
     else:
-   	    msg = "Invalid" 
+   	msg = "Invalid"
+	print(msg) 
+
+    print(msg)
 
     #resp = twilio.twiml.Response()
     #resp.message("Hello, Mobile Monkey")
