@@ -1,5 +1,6 @@
 package com.example.varun.roam;
 
+import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,19 +23,22 @@ public class ListDirections extends AppCompatActivity {
         String totalDistance = getIntent().getExtras().getString("totalDistance");
         ArrayList<String> elems = getIntent().getExtras().getStringArrayList("directions");
         ArrayList<String> toStrings = new ArrayList<String>();
-        Direction[] directions = new Direction[elems.size()-1];
-        for(int i=0; i<directions.length; i++){
+
+        ArrayList<Direction> directions = new ArrayList<Direction>();
+        for(int i=0; i<elems.size(); i++){
             String[] subElems = elems.get(i).split(";");
-            directions[i] = new Direction(subElems[0],subElems[1],subElems[2]);
-            toStrings.add(directions[i].toString());
-            Log.d("ELEM:",directions[i].toString());
+            directions.add(new Direction(subElems[0],subElems[1],subElems[2]));
+            toStrings.add(directions.get(i).toString());
+            Log.d("ELEM:",directions.get(i).toString());
         }
 
         ArrayAdapter<String> itemsAdapter;
-        itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, toStrings);
+        itemsAdapter = new ArrayAdapter<String>(this, R.layout.list_item, toStrings);
+
+        DirectionAdapter m_adapter = new DirectionAdapter(this, R.layout.list_item, directions);
 
         ListView listView = (ListView) findViewById(R.id.directions_view);
-        listView.setAdapter(itemsAdapter);
+        listView.setAdapter(m_adapter);
 
         // /Log.d("Dur: ", totalDuration);
     }
