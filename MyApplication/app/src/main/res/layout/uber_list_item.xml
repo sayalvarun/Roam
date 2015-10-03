@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:background="@drawable/background_with_shadow"
+    android:layout_marginTop="5dp"
+    android:padding="6dip">
+
+
+        <!-- Capacity -->
+        <TextView
+            android:id="@+id/capacity"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:layout_marginLeft="5dp"
+            android:ellipsize="marquee"
+            android:textColor="@color/green600"
+            />
+
+        <!-- Base -->
+        <TextView
+            android:id="@+id/base"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@id/capacity"
+            android:textStyle="bold"
+            android:textColor="@color/green600"
+            />
+
+        <!-- CPM -->
+        <TextView
+            android:id="@+id/cpm"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/base"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/green400"
+            />
+
+        <!-- Minimum -->
+        <TextView
+            android:id="@+id/minimum"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@id/cpm"
+            android:textColor="@color/green400"
+            />
+
+</RelativeLayout>

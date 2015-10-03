@@ -33,7 +33,6 @@ public class ListDirections extends AppCompatActivity {
         }
 
         ArrayAdapter<String> itemsAdapter;
-        itemsAdapter = new ArrayAdapter<String>(this, R.layout.list_item, toStrings);
 
         DirectionAdapter m_adapter = new DirectionAdapter(this, R.layout.list_item, directions);
 

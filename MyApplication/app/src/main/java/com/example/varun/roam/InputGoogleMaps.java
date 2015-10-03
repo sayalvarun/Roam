@@ -6,6 +6,8 @@ import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.Telephony;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
@@ -16,7 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class InputGoogleMaps extends Activity {
+public class InputGoogleMaps extends AppCompatActivity {
 
     EditText source = null;
     EditText dest = null;
@@ -30,6 +32,7 @@ public class InputGoogleMaps extends Activity {
         Intent intent = getIntent();
         IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
         registerReceiver(s, filter);
+
 
        // Typeface myTypeface = Typeface.createFromAsset(getAssets(), "xiomara.ttf");
        // TextView myTextView = (TextView)findViewById(R.id.directionsText);
