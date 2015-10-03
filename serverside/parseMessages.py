@@ -143,6 +143,7 @@ def recieveMessage():
             params = args.split(";")
             err, output = getWeather(str(params[0]), str(params[1]))
             if err == 0:
+		print("output: "+output)
                 compressed = zlib.compress(output)
                 encodeComp = base64.b64encode(compressed)
                 output = encodeComp
