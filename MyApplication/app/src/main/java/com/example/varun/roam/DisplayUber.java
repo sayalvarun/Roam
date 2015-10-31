@@ -20,7 +20,6 @@ public class DisplayUber extends ActionBarActivity {
         setContentView(R.layout.activity_display_uber);
         Log.d("UBER", "I am in the activity!");
 
-
         String outputString = getIntent().getStringExtra("productStrings");
         String[] outputs = outputString.split("~");
         ArrayList<Product> products = new ArrayList<Product>();

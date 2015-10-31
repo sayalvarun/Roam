@@ -2,12 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.varun.roam.DisplayWeather">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
 
     <com.github.pwittchen.weathericonview.WeatherIconView
         android:id="@+id/today_weather_icon"
@@ -26,14 +28,14 @@
         android:id="@+id/todays_weather"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/today_weather_icon"
-        android:layout_marginTop="46dp" />
+         />
 
     <com.github.pwittchen.weathericonview.WeatherIconView
         android:id="@+id/tomorrow_weather_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignTop="@+id/todays_weather"
+        android:layout_below="@+id/todays_weather"
         custom:weatherIconColor="@android:color/black"
         custom:weatherIconSize="100" />
 
@@ -46,5 +48,7 @@
         android:id="@+id/tomorrows_weather"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/tomorrow_weather_icon" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

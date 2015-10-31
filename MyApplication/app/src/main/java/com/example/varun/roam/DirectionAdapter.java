@@ -66,6 +66,7 @@ public class DirectionAdapter extends ArrayAdapter<Direction>{
             if (instr != null){
                 instr.setText(i.getDirectionText());
             }
+
             String directionText = i.getDirectionText();
 
             if(directionText.toLowerCase().contains("left")){

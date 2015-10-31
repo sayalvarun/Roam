@@ -1,10 +1,13 @@
 package com.example.varun.roam;
 
+import android.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.github.pwittchen.weathericonview.WeatherIconView;
@@ -31,6 +34,7 @@ public class DisplayWeather extends ActionBarActivity {
 
         TextView todayview = (TextView) findViewById(R.id.todays_weather);
         TextView tomorrowview = (TextView) findViewById(R.id.tomorrows_weather);
+
         todayview.setText(today);
         tomorrowview.setText(tomorrow);
     }
