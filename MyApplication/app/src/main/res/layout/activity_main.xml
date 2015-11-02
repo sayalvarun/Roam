@@ -57,7 +57,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="@string/get_uber_button_text"
+        android:text="Uber (BETA)"
         android:id="@+id/uber_button"
         android:background="@drawable/directions_ripple"
         android:onClick="getDirections"

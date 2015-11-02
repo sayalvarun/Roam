@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        custom:weatherIconColor="@android:color/black"
+        custom:weatherIcoHurmeGeometricSans4.otfnColor="@android:color/black"
         custom:weatherIconSize="100" />
 
     <TextView
