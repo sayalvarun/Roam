@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     final WeatherSMSListener weatherReceiver = new WeatherSMSListener();
     final UberSMSListener uberReceiver = new UberSMSListener();
     final IntentFilter filter =  new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
+    final String number = "16316516617";
     boolean weatherOn = true;
 
     @Override
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         content+= String.valueOf(latitude)+";";
                         content+= String.valueOf(longitude);
                         
-                        smsManager.sendTextMessage("17328100017", null, content, null, null);
+                        smsManager.sendTextMessage(number, null, content, null, null);
                     }
                 }
         );
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                         content+= String.valueOf(latitude)+";";
                         content+= String.valueOf(longitude);
 
-                        smsManager.sendTextMessage("17328100017", null, content, null, null);
+                        smsManager.sendTextMessage(number, null, content, null, null);
                     }
                 }
         );

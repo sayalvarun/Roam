@@ -24,6 +24,7 @@ public class InputGoogleMaps extends AppCompatActivity {
     EditText dest = null;
     Button button = null;
     final SmsListener s = new SmsListener();
+    final String number = "16316516617";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class InputGoogleMaps extends AppCompatActivity {
                         content+= source.getText().toString().replace(" ","")+";";
                         content+= dest.getText().toString();
                         //Log.d("DEBUG:",content);
-                        smsManager.sendTextMessage("17328100017", null, content, null, null);
+                        smsManager.sendTextMessage(number, null, content, null, null);
                     }
                 }
         );
